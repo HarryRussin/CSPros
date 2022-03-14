@@ -1,84 +1,64 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
+import Footer from '../components/Footer'
+import Header from '../components/Header'
 
 const Home: NextPage = () => {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center py-2">
+    <div className="">
       <Head>
-        <title>Create Next App</title>
+        <title>CSPros</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="flex w-full flex-1 flex-col items-center justify-center px-20 text-center">
-        <h1 className="text-6xl font-bold">
-          Welcome to{' '}
-          <a className="text-blue-600" href="https://nextjs.org">
-            Next.js!
-          </a>
-        </h1>
+      {/* Header */}
+      <Header />
 
-        <p className="mt-3 text-2xl">
-          Get started by editing{' '}
-          <code className="rounded-md bg-gray-100 p-3 font-mono text-lg">
-            pages/index.tsx
-          </code>
-        </p>
-
-        <div className="mt-6 flex max-w-4xl flex-wrap items-center justify-around sm:w-full">
-          <a
-            href="https://nextjs.org/docs"
-            className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Documentation &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Find in-depth information about Next.js features and API.
+      {/* main body */}
+      <div className="bg-black text-white ">
+        <div className="mx-auto max-w-[90vw]">
+          <div className="flex items-center justify-center text-5xl font-semibold">
+            <img className=" py-10" src="/questo.png" alt="" />
+            <p className="w-[40vw] text-center">
+              <span className="text-yellow-500">C</span>omputer{' '}
+              <span className="text-yellow-500">S</span>cience{' '}
+              <span className="text-yellow-500">P</span>rofessionals
             </p>
-          </a>
+          </div>
+          <hr className="bg-white py-[1px]" />
+          <p className="pt-3 pb-10 text-2xl font-bold text-yellow-500">
+            Popular CSPros Topics:
+          </p>
+          <div className="flex justify-between pb-10 text-black ">
+            <div className='subject group' >
+              <div className="h-[300px] w-[200px] bg-yellow-500 opacity-40"></div>
+              <p className="bg-white h-[100px] flex justify-center items-center transition-all group-hover:text-blue-300 group-hover:underline">Python</p>
+            </div>
 
-          <a
-            href="https://nextjs.org/learn"
-            className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Learn &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Learn about Next.js in an interactive course with quizzes!
-            </p>
-          </a>
+            <div className='subject group' >
+              <div className=" h-[300px] w-[200px] bg-yellow-500 opacity-40"></div>
+              <p className="bg-white h-[100px] flex justify-center items-center transition-all group-hover:text-blue-300 group-hover:underline">Python</p>
+            </div>
 
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Examples &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Discover and deploy boilerplate example Next.js projects.
-            </p>
-          </a>
+            <div className='subject group' >
+              <div className=" h-[300px] w-[200px] bg-yellow-500 opacity-40"></div>
+              <p className="bg-white h-[100px] flex justify-center items-center transition-all group-hover:text-blue-300 group-hover:underline">Python</p>
+            </div>
 
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Deploy &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+            <div className='subject group' >
+              <div className="h-[300px] w-[200px]  bg-yellow-500 opacity-40"></div>
+              <p className="bg-white h-[100px] flex justify-center items-center transition-all group-hover:text-blue-300 group-hover:underline">Python</p>
+            </div>
+          </div>
+          <hr className="bg-white py-[1px]" />
+          <p className='font-semibold py-3 text-sm'>CSNewbs last updated: <span className='text-yellow-500'>every single day #nodaysoff</span></p>
         </div>
-      </main>
+      </div>
 
-      <footer className="flex h-24 w-full items-center justify-center border-t">
-        <a
-          className="flex items-center justify-center gap-2"
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-        </a>
-      </footer>
+      {/* footer */}
+
+      <Footer />
     </div>
   )
 }
