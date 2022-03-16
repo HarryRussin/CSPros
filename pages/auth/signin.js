@@ -1,15 +1,17 @@
 import { getProviders, signIn as SignIntoProvider } from 'next-auth/react'
+import { useRouter } from 'next/router'
 import Footer from '../../components/Footer'
 import Header from '../../components/Header'
 
 //client
 function signin({ providers }) {
+    const history = useRouter()
     return (
         <>
             <Header />
 
             <div className="bg-black h-screen">
-                <div className="max-w-4xl xl:max-w-6xl mx-auto text-center text-white pt-20">
+                <div className="max-w-4xl xl:max-w-6xl mx-auto text-center text-white pt-16">
                     <p className='text-4xl py-5'>Sign In and become a <span className='text-yellow-500 font-semibold'>CSPro</span></p>
                     <hr className='py-1 pb-6'/>
                     <div className="flex justify-center space-x-5">
@@ -21,6 +23,8 @@ function signin({ providers }) {
                         </div>
                     ))}
                     </div>
+                    <p className='text-yellow-500 px-10 py-3 text-3xl font-bold'>OR</p>
+                    <button onClick={()=>history.replace('/join-us')} className='py-5 px-14 text-xl font-semibold text-ellipsis hover:bg-purple-400 transition-all bg-purple-500 rounded-lg text-white'>Join Us</button>
                 </div>
             </div>
             <Footer />
