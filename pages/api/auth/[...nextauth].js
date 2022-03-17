@@ -21,7 +21,8 @@ export default NextAuth({
     ],
 
     pages:{
-        signIn: '/auth/signin'
+        signIn: '/auth/signin',
+        join:'/join-us'
     },
     callbacks:{
         async session({session,token}){
@@ -29,6 +30,11 @@ export default NextAuth({
             session.user.uid = token.sub
             return session
         }
+        ,
+        async signIn({ user, account }) {
+            console.log(user,account);
+            return true
+          },
     },
     secret: process.env.JWT_SECRET,
 })
