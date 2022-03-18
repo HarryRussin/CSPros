@@ -2,7 +2,7 @@ import { useRecoilState } from 'recoil'
 import Header from '../components/Header'
 import { userState } from '../atoms/atom'
 import Link from 'next/link'
-import { addDoc, collection, doc, getDoc } from 'firebase/firestore'
+import { addDoc, collection, doc, getDoc, serverTimestamp } from 'firebase/firestore'
 import { db } from '../firebase'
 import { useEffect, useState } from 'react'
 import { useSession } from 'next-auth/react'
@@ -13,15 +13,24 @@ function Addclass() {
 
   const [name, setname] = useState('')
   const [id, setid] = useState('')
+  const [err, seterr] = useState(false)
 
   const addClass = async (e: any) => {
     e.preventDefault()
     //@ts-ignore
+    if (!name || !id) {
+        seterr(true)
+        return
+    }
     await addDoc(collection(db, 'classes'), {
       className: name,
       classID: id ? id : name.split(' ').join().toUpperCase(),
       //@ts-ignore
-      teacherId: session?.user?.uid
+      teacherId: session?.user?.uid,
+      studentCount:0,
+      teacherName:session?.user?.name,
+      teacherEmail:session?.user?.email,
+      created_at:serverTimestamp()
     })
   }
 

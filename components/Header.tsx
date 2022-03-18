@@ -68,7 +68,7 @@ function Header() {
           <div className="hidden space-x-4 md:flex ">
             <p className="link">Classroom</p>
             <p className="link">Work Set</p>
-            <p className="link">All Classes</p>
+            <Link href={'/allclasses'}><p className="link">All Classes</p></Link>
           </div>
         )}
         <Link href={`/${session ? 'accountdetails' : 'auth/signin'}`}>
