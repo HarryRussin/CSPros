@@ -6,6 +6,7 @@ import { addDoc, collection, doc, getDoc, serverTimestamp } from 'firebase/fires
 import { db } from '../firebase'
 import { useEffect, useState } from 'react'
 import { useSession } from 'next-auth/react'
+import { useRouter } from 'next/router'
 
 function Addclass() {
   const [user, setuser] = useRecoilState(userState)
@@ -14,6 +15,8 @@ function Addclass() {
   const [name, setname] = useState('')
   const [id, setid] = useState('')
   const [err, seterr] = useState(false)
+
+  const history = useRouter()
 
   const addClass = async (e: any) => {
     e.preventDefault()
@@ -32,6 +35,7 @@ function Addclass() {
       teacherEmail:session?.user?.email,
       created_at:serverTimestamp()
     })
+    history.replace('/')
   }
 
   const getUser = async () => {

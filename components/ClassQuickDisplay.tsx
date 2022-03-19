@@ -14,7 +14,7 @@ function ClassQuickDisplay(props: Class) {
       </div>
       <div className="flex w-[30%] flex-col space-y-2 rounded bg-yellow-300 p-2">
         <Link href={`/class/${props.id}`}>
-          <div className="w-full rounded bg-green-400 p-2 text-black">
+          <div className="w-full rounded bg-green-400 hover:bg-green-500 transition-all p-2 text-black">
             <p className="text-center font-bold">See Class</p>
           </div>
         </Link>

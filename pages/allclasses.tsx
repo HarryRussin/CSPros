@@ -10,9 +10,22 @@ import Header from '../components/Header'
 import { db } from '../firebase'
 import { Class } from '../typings'
 
+function find(items:[Class], text:any) {
+  text = text.split(' ');
+  let searched = items.filter(function(item) {
+    return text.every(function(el:any) {
+      return item.className.indexOf(el) > -1;
+    });
+  });
+  console.log(searched);
+  return searched
+}
+
 function Allclasses() {
   const [classes, setclasses] = useState<any>([])
   const { data: session } = useSession()
+  const [searchq, setsearchq] = useState('')
+  const [constclasses, setconstclasses] = useState<any>([])
 
   const getAllClasses = async () => {
     let docs = await getDocs(query(collection(db, 'classes')))
@@ -23,12 +36,17 @@ function Allclasses() {
       docsdata.push(data)
     })
     console.log(docsdata)
+    setconstclasses(docsdata)
     setclasses(docsdata)
   }
 
   useEffect(() => {
     getAllClasses()
   }, [])
+
+  useEffect(() => {
+    setclasses(find(constclasses,searchq))
+  }, [searchq])
 
   return (
     <div>
@@ -47,11 +65,12 @@ function Allclasses() {
                     className="w-full appearance-none rounded border-2 border-gray-200 bg-gray-100 py-2 px-4 pr-10 leading-tight text-gray-700 focus:border-purple-500 focus:bg-white focus:outline-none"
                     type="text"
                     placeholder="eg. Year 11 Computer Science set 2"
+                    onChange={(e)=>setsearchq(e.target.value)}
                   />
                   <SearchCircleIcon className="absolute right-1 top-1 h-8 w-8 text-black" />
                 </div>
               </div>
-              <div className="">
+              <div className="pb-10">
                 {classes.length > 0 ? (
                   <div className="grid grid-cols-1 gap-5 lg:grid-cols-2 xl:grid-cols-3">
                     {classes.map((Class: Class) => (
