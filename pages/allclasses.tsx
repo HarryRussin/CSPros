@@ -11,10 +11,10 @@ import { db } from '../firebase'
 import { Class } from '../typings'
 
 function find(items:[Class], text:any) {
-  text = text.split(' ');
+  text = text.toLowerCase().split(' ');
   let searched = items.filter(function(item) {
     return text.every(function(el:any) {
-      return item.className.indexOf(el) > -1;
+      return item.className.toLowerCase().indexOf(el) > -1;
     });
   });
   console.log(searched);

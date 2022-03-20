@@ -41,6 +41,7 @@ function Join({ providers }: { providers: [{ name: string; id: string }] }) {
       class: classroom.toLocaleLowerCase(),
       school: school.toLocaleLowerCase(),
       role: role,
+      image:session?.user?.image
     })
 
     history.replace('/')
@@ -57,6 +58,7 @@ function Join({ providers }: { providers: [{ name: string; id: string }] }) {
       uid: session?.user?.uid,
       school: school.toLocaleLowerCase(),
       role: role,
+      image:session?.user?.image
     })
 
     history.replace('/')

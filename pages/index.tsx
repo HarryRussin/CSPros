@@ -18,14 +18,15 @@ const Home: NextPage = () => {
       <div className="bg-black text-white">
         <div className="md:mx-auto text-center mx-3 md:text-left md:max-w-4xl xl:max-w-6xl">
           <div className="flex items-center justify-center text-5xl font-semibold">
-            <img className=" py-10" src="/questo.png" alt="" />
-            <p className="md:w-[40vw] text-center">
+            <img className=" py-10 hidden md:inline-block" src="/questo.png" alt="" />
+            <p className="md:w-[40vw] text-center my-10">
               <span className="text-yellow-500">C</span>omputer{' '}
               <span className="text-yellow-500">S</span>cience{' '}
               <span className="text-yellow-500">Pro</span>fessional<span className='text-yellow-500'>s</span>
             </p>  
           </div>
           <hr className="bg-white py-[1px]" />
+          <div className="mx-5 lg:mx-0">
           <p className="pt-3 pb-10 text-2xl font-bold text-yellow-500">
             Popular CSPros Topics:
           </p>
@@ -52,6 +53,7 @@ const Home: NextPage = () => {
           </div>
           <hr className="bg-white py-[1px]" />
           <p className='font-semibold py-3 text-sm'>CSNewbs last updated: <span className='text-yellow-500'>every single day #nodaysoff</span></p>
+          </div>
         </div>
       </div>
 

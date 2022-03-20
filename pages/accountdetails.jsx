@@ -91,7 +91,7 @@ function Account() {
     <div className="bg-black text-white">
       <Header />
 
-      <div className="mx-auto h-screen md:max-w-4xl xl:max-w-6xl">
+      <div className="md:mx-auto mx-5 h-screen md:max-w-4xl xl:max-w-6xl">
         {session && !norole ? (
           <div className="my-10 flex flex-col justify-center">
             <div className="flex justify-between">
@@ -149,7 +149,7 @@ function Account() {
               </div>
             </div>
             <hr className="mt-4 bg-white py-[1px]" />
-            <div className="flex space-x-6 pt-5">
+            <div className="md:flex-row flex flex-col space-y-2 md:space-x-6 pt-5">
               <p
                 onClick={() => {
                   signOut()
