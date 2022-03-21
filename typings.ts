@@ -7,3 +7,8 @@ export interface Class{
     teacherName:string
     teacherEmail:string
 }
+
+export interface Announcement{
+    message:string
+    publisherId:string
+}
