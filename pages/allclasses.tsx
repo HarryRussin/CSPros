@@ -50,7 +50,7 @@ function Allclasses() {
 
   return (
     <div>
-      <Header />
+      <Header selectedlink={'allclasses'}/>
 
       <div className="min-h-screen bg-black text-white">
         <div className="mx-10 max-w-3xl md:mx-auto xl:max-w-6xl">

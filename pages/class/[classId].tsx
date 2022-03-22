@@ -7,6 +7,7 @@ import { useSession } from 'next-auth/react'
 import React, { useEffect } from 'react'
 import { useState } from 'react'
 import ClassHeader from '../../components/ClassHeader'
+import ClassManage from '../../components/ClassManage'
 import ClassStream from '../../components/classStream'
 import Footer from '../../components/Footer'
 import { db } from '../../firebase'
@@ -56,6 +57,9 @@ function Class({ classData }: Props) {
           {/* STREAM */}
           {selectedl === 'stream' && (
               <ClassStream classData={classData} teacher={teacher}/>
+          )}
+          {selectedl === 'manage' && (
+            <ClassManage classData={classData} teacher={teacher}/>
           )}
         </div>
       </div>

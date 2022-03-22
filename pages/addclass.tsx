@@ -27,13 +27,13 @@ function Addclass() {
     }
     await addDoc(collection(db, 'classes'), {
       className: name,
-      classID: id ? id : name.split(' ').join().toUpperCase(),
+      classID: name.split(' ').join().toUpperCase(),
       //@ts-ignore
       teacherId: session?.user?.uid,
       studentCount:0,
       teacherName:session?.user?.name,
       teacherEmail:session?.user?.email,
-      created_at:serverTimestamp()
+      timestamp:serverTimestamp()
     })
     history.replace('/')
   }
@@ -66,7 +66,7 @@ function Addclass() {
 
   return (
     <div>
-      <Header />
+      <Header selectedlink={'login'}/>
 
       <div className="min-h-screen bg-black text-white">
         <div className="mx-10 max-w-4xl pt-16 md:mx-auto xl:max-w-6xl">
@@ -87,7 +87,7 @@ function Addclass() {
                 Add Class
               </p>
               <hr className="mb-5 bg-white py-[1px]" />
-              <form onSubmit={(e) => addClass(e)}>
+              <form>
                 <div className="md:items-left mb-6 flex max-w-6xl flex-col">
                   <div className="mb-2">
                     <label className="mb-2 block pr-4 text-xl font-bold text-yellow-500 md:mb-0">
@@ -121,7 +121,7 @@ function Addclass() {
                     />
                   </div>
                 </div>
-                <button type="submit" className="button py-2">
+                <button onClick={(e) => addClass(e)} className="button py-2">
                   Add class
                 </button>
               </form>

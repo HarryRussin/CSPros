@@ -66,16 +66,16 @@ function Join({ providers }: { providers: [{ name: string; id: string }] }) {
 
   return (
     <div>
-      <Header />
+      <Header selectedlink={'login'}/>
 
       <div className="flex min-h-screen justify-center overflow-hidden bg-black">
-        <div className="max-w-5xl pt-16 text-white lg:mx-auto xl:max-w-6xl">
+        <div className="max-w-5xl pt-16 text-white mx-5 lg:mx-auto xl:max-w-6xl">
           {/* SELECT OCCUPATION */}
           <div className={` ${!selected ? '' : 'hidden'} transition-all `}>
             <p className="text-3xl font-semibold text-yellow-500">
               Let&apos;s get started...
             </p>
-            <div className="mt-5 flex h-52 justify-between space-x-10 rounded border border-yellow-500 py-5 px-10">
+            <div className="mt-5 flex h-full md:h-52 justify-between space-x-10 rounded border border-yellow-500 py-5 px-10">
               <div
                 onClick={() => setselected('student')}
                 className="group flex w-1/2 flex-col "
@@ -118,11 +118,11 @@ function Join({ providers }: { providers: [{ name: string; id: string }] }) {
                   Sign up as a{' '}
                   <span className="text-yellow-300">{selected}</span> with...
                 </p>
-                <div className="flex space-x-5">
+                <div className="flex md:flex-row md:space-x-5 flex-col space-y-3 md:space-y-0">
                   {Object.values(providers).map((provider) => (
                     <div className="" key={provider.name}>
                       <button
-                        className="rounded-lg bg-yellow-500 py-5 px-8 text-white transition-all hover:bg-purple-300"
+                        className="rounded-lg bg-yellow-500 py-5 px-8 text-white w-full md:w-auto transition-all hover:bg-purple-300"
                         onClick={() =>
                           SignIntoProvider(provider.id, {
                             callbackUrl: `/join-us?role=${selected}`,

@@ -8,13 +8,13 @@ function signin({ providers }) {
     const history = useRouter()
     return (
         <>
-            <Header />
+            <Header selectedlink={'login'}/>
 
             <div className="bg-black h-screen">
                 <div className="max-w-4xl xl:max-w-6xl mx-auto text-center text-white pt-16">
                     <p className='text-4xl py-5'>Sign In and become a <span className='text-yellow-500 font-semibold'>CSPro</span></p>
                     <hr className='py-1 pb-6'/>
-                    <div className="flex justify-center space-x-5">
+                    <div className="flex justify-center md:flex-row flex-col space-y-3 md:space-y-0 md:space-x-5">
                     {Object.values(providers).map((provider) => (
                         <div className='' key={provider.name}>
                             <button className='py-5 px-8 hover:bg-yellow-400 transition-all bg-yellow-500 rounded-lg text-white' onClick={() => SignIntoProvider(provider.id, { callbackUrl: '/' })}>

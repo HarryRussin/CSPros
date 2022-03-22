@@ -89,7 +89,7 @@ function Account() {
 
   return (
     <div className="bg-black text-white">
-      <Header />
+      <Header selectedlink={'account'}/>
 
       <div className="md:mx-auto mx-5 h-screen md:max-w-4xl xl:max-w-6xl">
         {session && !norole ? (
@@ -149,7 +149,7 @@ function Account() {
               </div>
             </div>
             <hr className="mt-4 bg-white py-[1px]" />
-            <div className="md:flex-row flex flex-col space-y-2 md:space-x-6 pt-5">
+            <div className="md:flex-row flex flex-col space-y-2 md:space-y-0 md:space-x-6 pt-5">
               <p
                 onClick={() => {
                   signOut()
