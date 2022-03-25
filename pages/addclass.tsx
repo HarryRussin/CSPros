@@ -8,6 +8,8 @@ import { useEffect, useState } from 'react'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
 
+const bannedList = ['']
+
 function Addclass() {
   const [user, setuser] = useRecoilState(userState)
   const { data: session } = useSession()
@@ -33,7 +35,9 @@ function Addclass() {
       studentCount:0,
       teacherName:session?.user?.name,
       teacherEmail:session?.user?.email,
-      timestamp:serverTimestamp()
+      timestamp:serverTimestamp(),
+      requests:[],
+      students:[]
     })
     history.replace('/')
   }
@@ -70,10 +74,11 @@ function Addclass() {
 
       <div className="min-h-screen bg-black text-white">
         <div className="mx-10 max-w-4xl pt-16 md:mx-auto xl:max-w-6xl">
-          {user.role !== 'teacher' || !session ? (
+          {//@ts-ignore
+          user.role !== 'teacher' || !session ||bannedList.includes(session?.user?.uid) ? (
             <div className="text-center">
               <p className="pt-20 text-white">
-                Restricted page - you do not have access
+                Restricted page - you do not have access (banned idot)
               </p>
               <Link href={'/'} replace>
                 <p className="text-yellow-500 transition-all hover:text-yellow-400 hover:underline">

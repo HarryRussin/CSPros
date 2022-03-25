@@ -28,19 +28,7 @@ function Header({selectedlink}:{selectedlink:string}) {
       if (docSnap.exists()) {
         console.log('Document data:', docSnap.data())
         let info: any = docSnap.data()
-        console.log(info);
-        
-        let usercop: any = {
-          name: info.name,
-          email: info.email,
-          school: info.school,
-          role: info.role,
-          //@ts-ignore
-          uid: session?.user?.uid,
-        }
-        console.log(info.role);
-        
-        setuser(usercop)
+        setuser(info)
       } else {
         // doc.data() will be undefined in this case
         console.log('No such document!')
@@ -59,12 +47,12 @@ function Header({selectedlink}:{selectedlink:string}) {
       <div className="hidden w-full justify-between space-x-10 md:flex  md:max-w-4xl md:items-center">
         <Link href={'/'}>
           <div className={`flex items-center ${selectedl==='home'&&'bg-yellow-500'}`}>
-            <img
+            {/* <img
               className="w-13 h-11"
               src="https://static.wixstatic.com/media/fb2250_a5792a2065054afab6a87f0dc33b2fa5~mv2.png/v1/crop/x_0,y_0,w_1684,h_1377/fill/w_93,h_75,al_c,usm_0.66_1.00_0.01,enc_auto/Black%20on%20Transparent.png"
               alt=""
-            />
-            <p className="text-[1.9rem] font-bold">CSPros</p>
+            /> */}
+            <p className="text-[1.9rem] font-bold">PseudoBlox</p>
           </div>
         </Link>
 
@@ -80,7 +68,10 @@ function Header({selectedlink}:{selectedlink:string}) {
           </div>
         ) : (
           <div className=" flex space-x-4 ">
-            <p className={`classlink text-xl ${selectedlink==='classroom'&&'bg-yellow-300 font-bold underline underline-offset-1 decoration-[3px]'}`}>Classroom</p>
+            {/* @ts-ignore */}
+            <Link href={`/mysclasses`}>
+            <p className={`classlink text-xl ${selectedlink==='classroom'&&'bg-yellow-300 font-bold underline underline-offset-1 decoration-[3px]'}`}>My Classes</p>
+            </Link>
             <p className={`classlink text-xl ${selectedlink==='setwork'&&'bg-yellow-300 font-bold underline underline-offset-1 decoration-[3px]'}`}>Work Set</p>
             <Link href={'/allclasses'}>
               <p className={`classlink text-xl ${selectedlink==='allclasses'&&'bg-yellow-300 font-bold underline underline-offset-1 decoration-[3px]'}`}>All Classes</p>

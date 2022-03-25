@@ -13,12 +13,12 @@ function ClassHeader({teacherID,selectedlink,setselectedl}:{teacherID:string,sel
       <div className="flex w-full justify-between space-x-10  md:max-w-4xl md:items-center">
         <Link href={'/'}>
           <div className="flex items-center ">
-            <img
+            {/* <img
               className="w-13 h-11"
               src="https://static.wixstatic.com/media/fb2250_a5792a2065054afab6a87f0dc33b2fa5~mv2.png/v1/crop/x_0,y_0,w_1684,h_1377/fill/w_93,h_75,al_c,usm_0.66_1.00_0.01,enc_auto/Black%20on%20Transparent.png"
               alt=""
-            />
-            <p className="text-[1.9rem] font-bold">CSPros</p>
+            /> */}
+            <p className="text-[1.9rem] font-bold">PseudoBlox</p>
           </div>
         </Link>
 

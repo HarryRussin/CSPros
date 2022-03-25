@@ -111,7 +111,7 @@ function Account() {
                 {role === 'teacher' ? (
                   <p>Total Classes:</p>
                 ) : (
-                  <p>Class Name: </p>
+                  <p>Class Id: </p>
                 )}
               </div>
               <div className="font-semibold">
@@ -140,7 +140,7 @@ function Account() {
                 ) : (
                   <p>
                     {className ? (
-                      className.toUpperCase()
+                      <Link href={`/class/${className}`}><p className='hover:underline hover:text-yellow-500'>{className}</p></Link>
                     ) : (
                       <p className="underline">No Assigned Class Leader yet</p>
                     )}
