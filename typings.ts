@@ -7,7 +7,7 @@ export interface Class{
     teacherName:string
     teacherEmail:string
     requests:[Requests]
-    students:[Requests]
+    students:[string]
 }
 export interface Requests{
     name:string

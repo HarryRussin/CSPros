@@ -4,19 +4,12 @@ import {
   PencilIcon,
   PlusCircleIcon,
 } from '@heroicons/react/outline'
-import { arrayUnion, collection, doc, getDocs, query, setDoc, where } from 'firebase/firestore'
-import React, { useState } from 'react'
+import { arrayRemove, arrayUnion, collection, doc, documentId, getDocs, query, setDoc, where } from 'firebase/firestore'
+import { useSession } from 'next-auth/react'
+import React, { useEffect, useState } from 'react'
 import { db } from '../firebase'
 import { Class } from '../typings'
 import StudentRequests from './StudentRequests'
-
-const testreq = [
-  {name:'harry russin',email:'harry@russin.com',id:'1245676321',image:'https://jnkasd.png'},
-  {name:'harry russin',email:'harry@russin.com',id:'1245676321',image:'https://jnkasd.png'},
-  {name:'harry russin',email:'harry@russin.com',id:'1245676321',image:'https://jnkasd.png'},
-  {name:'harry russin',email:'harry@russin.com',id:'1245676321',image:'https://jnkasd.png'},
-  {name:'harry russin',email:'harry@russin.com',id:'1245676321',image:'https://jnkasd.png'},
-]
 
 function ClassManage({
   classData,
@@ -30,6 +23,8 @@ function ClassManage({
   const [newcname, setnewcname] = useState('')
   const [addstudenterr, setaddstudenterr] = useState(false)
   const [studentemail, setstudentemail] = useState('')
+  const [requests, setrequests] = useState([])
+  const {data:session} = useSession()
 
   const changeClassName = async () => {
     await setDoc(
@@ -40,6 +35,25 @@ function ClassManage({
       { merge: true }
     )
     getNewData()
+  }
+
+  const getStudentReq = async ()=>{
+    console.log(classData.requests);
+    
+    try{
+    let docref = await getDocs(query(collection(db,'users'),where(documentId(),'in',classData.requests)))
+    let requestsarr:any = []
+    docref.forEach(doc=>{
+      requestsarr.push(Object.assign({id:doc.id},doc.data()))
+    })
+    console.log(requestsarr);
+    
+    setrequests(requestsarr)
+    }
+    catch{
+
+    }
+
   }
 
   const addStudentByEmail = async ()=>{
@@ -79,6 +93,24 @@ function ClassManage({
     },{merge:true})
   }
 
+  const accReq = async (Id:any)=>{
+    await setDoc(doc(db,'classes',classData.id),{
+      //@ts-ignore
+      requests:arrayRemove(Id),
+      //@ts-ignore
+      students:arrayUnion(Id)
+    },{merge:true})
+
+    getNewData()
+    //@ts-ignore
+    let newreq = requests.filter(item => (item.id!==Id))
+    setrequests(newreq)
+  }
+
+  useEffect(() => {
+    getStudentReq()
+  }, [classData])
+
   return (
     <div className="pb-16">
     <div className="rounded-md bg-gray-100 p-8 pb-0">
@@ -108,7 +140,6 @@ function ClassManage({
         {/* STUDENTS */}
         <section className="mt-5 flex space-x-10 rounded pb-10 justify-between bg- px-10 w-full text-black">
           <div className="">
-            <p>Total Students: 28</p>
             <div className="md:items-left mt-2 flex max-w-6xl flex-col">
               <div className="mb-2">
                 <label className="mb-2 block pr-4 text-xl font-bold text-black md:mb-0">
@@ -127,12 +158,12 @@ function ClassManage({
               </div>
             </div>
           </div>
-          <div className="w-1/2">
-            <p>Student Requests: {testreq.length}</p>
-            <div className="h-[200px] mt-3 scrollbar-thin scrollbar-thumb-black rounded-md border-x-2 border-b-2 border-black scrollbar overflow-auto">
-              {testreq.map(request=>(
+          <div className="w-2/3">
+            <p>Student Requests: {requests.length}</p>
+            <div className="h-[200px] mt-3 scrollbar-thin scrollbar-thumb-black rounded-md border-2  border-black scrollbar overflow-auto">
+              {requests.map(request=>(
                 //@ts-ignore
-                <StudentRequests requests={request}/>
+                <StudentRequests requests={request} accReq={accReq}/>
               ))}
             </div>
           </div>

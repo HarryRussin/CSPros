@@ -3,7 +3,7 @@ import { Class } from '../typings'
 
 function ClassRequests({ classData,acceptReq }: { classData: Class,acceptReq:any }) {
   return (
-    <div className="box-border flex rounded items-center space-x-2 border-t-2 border-black bg-yellow-500 p-2">
+    <div className="box-border flex h-fit rounded items-center space-x-2 border-t-2 border-black bg-yellow-500 p-2">
       <div className="flex-1 bg-yellow-300 p-2 rounded">
         <p className='text-black font-semibold'>{classData.className}</p>
         <p className="text-xs text-gray-500">{classData.teacherName}</p>

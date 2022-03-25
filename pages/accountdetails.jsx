@@ -192,7 +192,7 @@ function Account() {
               <div className="">
                 <p className="pt-40 text-white">Sign up to access this page</p>
                 <p className="text-yellow-500">
-                  <Link href={'/join-us'} replace>
+                  <Link href={'/auth/signin'} replace>
                     <span className="transition-all hover:text-yellow-400 hover:underline">
                       Sign up
                     </span>

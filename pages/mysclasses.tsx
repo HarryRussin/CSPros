@@ -1,6 +1,6 @@
 import {
-    arrayRemove,
-    arrayUnion,
+  arrayRemove,
+  arrayUnion,
   collection,
   doc,
   documentId,
@@ -90,21 +90,28 @@ function MysClasses() {
     }
   }
 
-  const acceptreq = async (Id:string)=>{
-      await setDoc(doc(db,'classes',Id),{
-          //@ts-ignore
-          students:arrayUnion(session?.user?.uid)
-      },{merge:true})
-      //@ts-ignore
-      await setDoc(doc(db,'users',session?.user?.uid),{
-        classreq:arrayRemove(Id)
-      },{merge:true})
-      //@ts-ignore
-      setmyclasses([])
-      //@ts-ignore
-      setmyclassreq([])
-      getMyClasses()
-      getMyClassReq()
+  const acceptreq = async (Id: string) => {
+    await setDoc(
+      doc(db, 'classes', Id),
+      {
+        //@ts-ignore
+        students: arrayUnion(session?.user?.uid),
+      },
+      { merge: true }
+    )
+    await setDoc(
+    //@ts-ignore
+      doc(db, 'users', session?.user?.uid),
+      {
+        classreq: arrayRemove(Id),
+      },
+      { merge: true }
+    )
+    //@ts-ignore
+    setmyclasses([])
+    let newclass:any = myclassreq?.filter(item=>!(item.id===Id))
+    setmyclassreq(newclass)
+    getMyClasses()
   }
 
   useEffect(() => {
@@ -132,20 +139,19 @@ function MysClasses() {
                 &apos;s classes
               </h1>
               <hr className="mb-5 mt-2 bg-white py-[1px]" />
-              <div className="flex flex-col sm:grid sm:gap-5 sm:grid-cols-5">
-              <div className="col-span-2 grid mb-16 grid-cols-1 gap-3 xl:grid-cols-2">
-                  {myclassreq?.map((Class) => (
-                    //@ts-ignore
-                    <ClassRequests classData={Class} acceptReq={acceptreq} />
-                  ))}
-                </div>
+              <div className="flex flex-col sm:grid sm:grid-cols-5 sm:gap-5">
                 <div className="col-span-3 grid grid-cols-1 gap-5 xl:grid-cols-2">
                   {myclasses?.map((Class) => (
                     //@ts-ignore
                     <ClassQuickDisplay {...Class} />
                   ))}
                 </div>
-        
+                <div className="col-span-2 mb-16 grid grid-cols-1 gap-3 xl:grid-cols-2">
+                  {myclassreq?.map((Class) => (
+                    //@ts-ignore
+                    <ClassRequests classData={Class} acceptReq={acceptreq} />
+                  ))}
+                </div>
               </div>
             </div>
           ) : (

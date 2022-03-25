@@ -32,7 +32,6 @@ function Addclass() {
       classID: name.split(' ').join().toUpperCase(),
       //@ts-ignore
       teacherId: session?.user?.uid,
-      studentCount:0,
       teacherName:session?.user?.name,
       teacherEmail:session?.user?.email,
       timestamp:serverTimestamp(),
