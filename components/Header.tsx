@@ -47,12 +47,12 @@ function Header({selectedlink}:{selectedlink:string}) {
       <div className="hidden w-full justify-between space-x-10 md:flex  md:max-w-4xl md:items-center">
         <Link href={'/'}>
           <div className={`flex items-center ${selectedl==='home'&&'bg-yellow-500'}`}>
-            {/* <img
+            <img
               className="w-13 h-11"
               src="https://static.wixstatic.com/media/fb2250_a5792a2065054afab6a87f0dc33b2fa5~mv2.png/v1/crop/x_0,y_0,w_1684,h_1377/fill/w_93,h_75,al_c,usm_0.66_1.00_0.01,enc_auto/Black%20on%20Transparent.png"
               alt=""
-            /> */}
-            <p className="text-[1.9rem] font-bold">PseudoBlox</p>
+            />
+            <p className="text-[1.9rem] font-bold">CSpros</p>
           </div>
         </Link>
 
@@ -122,7 +122,7 @@ function Header({selectedlink}:{selectedlink:string}) {
           />
           {user.role === 'teacher' ? (
             <div className=" flex h-full flex-col items-center justify-center space-y-10 text-3xl">
-              <p className="link py-3 px-5 text-5xl">My Classes</p>
+              <Link href={'/myclasses'}><p className="link py-3 px-5 text-5xl">My Classes</p></Link>
               <Link href={'/allclasses'}><p className="link py-3 px-5 text-5xl">All Classes</p></Link>
               <p className="link py-3 px-5 text-5xl">Create Questions</p>
               <Link href={`/${session ? 'accountdetails' : 'auth/signin'}`}>
@@ -131,7 +131,7 @@ function Header({selectedlink}:{selectedlink:string}) {
             </div>
           ) : (
             <div className=" flex h-full flex-col items-center justify-center space-y-10">
-              <p className="link py-3 px-5 text-5xl">Classroom</p>
+              <Link href={'/mysclasses'}><p className="link py-3 px-5 text-5xl">My Classes</p></Link>
               <p className="link py-3 px-5 text-5xl">Work Set</p>
               <Link href={'/allclasses'}>
                 <p className="link py-3 px-5 text-5xl">All Classes</p>
